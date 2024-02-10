@@ -1,0 +1,2386 @@
+
+                                                               SQL NOTES             
+1)commands in sql(windows)
+2)constraints
+3)data types
+4)statements/commands/subset/languages
+DQL
+5)operators
+6)ddl,dml,tcl,dcl
+7)functions
+8)sub query
+9)joins
+10)set operators
+11)corealted
+12)pseudo columns
+13)normalization
+
+
+
+
+What is data in SQL?
+collection of Raw facts or information is known as data in SQL.
+
+What is Database?
+It is a container to store the data 
+or
+It is a place where we can store all the data permanently.
+
+
+What is DBMS?
+DBMS Stands for database management System.
+It is a software which is used to store and organize the data inside the data base.
+
+What are the types of DBMS in sql?
+ There are four types: 
+HDBMS (Hierarchical DBMS)
+NDBMS (Network DBMS)
+ODBMS (Object DBMS)
+RDBMS (Relational DBMS)
+
+What is SQL?
+SQL stands for Structured Query Language.
+SQL is a Standard language specifically designed for storing, retrieving, managing or manipulating the data inside a relational database management system (RDBMS).
+
+What is table in SQL?
+An entity is known as table in SQL.
+Entity means collecting the data about any objects and stored in the form of tables.
+A table is a combination of multiple rows and multiple columns.
+For each and every data, we are using cells.
+Rows is known as tuple .(A single entry in a table)
+Columns is known as field or attribute in sql.
+
+
+
+
+
+commands in sql 
+
+show:- used to display the default page size and line size inside the 
+database.
+syntax:- show pages
+         14
+         show lines 
+         80
+
+-->once u install with oracle 10g  
+ they are giving us 4 different tables :- select * from tab;
+
+set:- it is used to set the length of page size and line size 
+inside our database.
+--> it is not permanent.
+syntax:- set pages 200
+         set lines 200
+
+cl scr:- full form is clear screen
+it is used to get one fresh page. 
+syntax:- cl scr
+
+desc:- it is used to display the column records present in the table(table structure).
+it will display column names,constraint and datatype along with size.
+
+syntax:- desc table-name
+         desc emp
+
+ed:- if u have any changes in a query so that u can make use of this command .
+--> if u want to change the query use ed inside the server and enter .
+-->notepad gets open ,here change ur query and cross save it or ctrl'S.
+-->whatever you changed inside the notedpad that will be stored inside the server.
+-->to execute the edited query use (/).
+
+
+database :- oracle database :- table 
+
+username :- scott
+pass:- tiger
+ok --> 
+
+
+
+
+constraint:- rule or condition which is applied
+to create one table.
+
+types of constraints:- 
+1)not null
+2)unique
+3)primary key
+4)foreign key
+5)check
+
+note:-
+Null :- empty space
+ 
+If u don’t pass any data to particular cell
+that will be considered as null value.
+
+1)not null:- used to avoid the null values.
+
+2)unique:- used to avoid the duplicate values.
+
+3)primary key :- it is a combination of not null
+and unique.
+use of primary key:- used to uniquely identify the
+records.
+-->only one primary key for 1 table 
+-->more than one primary key will be not allowed
+by the server.
+-->it is highly recommended.
+
+4)Foreign key:- it is also known as refrential integrity constraint.
+-->it is used to build a relation from one table to another
+table.
+-->fk allows duplicates and null values.
+-->we can have more than one foreign key in a table.
+-->fk in the child table act as primary key in its own 
+table or parent table.
+
+5)check:- (condition)
+it will limit the type of the data that can go inside the table.
+
+
+
+
+
+chapter 3:-
+ 
+datatypes:- it is used to specify what type of data u r 
+going to store for memory location.
+
+
+datatypes in sql
+1)char
+2)varchar/varchar2
+3)number(precision,scale)
+4)date
+5)clob:- character large object
+6)blob:- binary large object
+
+
+char:- it stores alphanumeric('A-Z','a-z','0-9')and 
+special characters($,&,@,#,!....).
+-->it stores upto 2000ch.
+-->when u use char datatype we must mention size.
+-->must be enclosed within ' '(single quotes).
+-->it follows fixed length memory allocation.
+syntax:- col-name char(size)
+ex:- team char(3) 
+DIFF:-(there is memory wastage in case if u store less than the given size)
+
+varchar:- it stores alphanumeric('A-Z','a-z','0-9')and 
+special characters($,&,@,#,!....).
+-->it stores upto 2000ch.
+-->when u use char datatype we must mention size.
+-->must be enclosed within ' '(single quotes).
+-->it follows variable length memory allocation.
+syntax:- col-name varchar(size)
+ex:- sname varchar(5)
+
+varchar2:- it is just advance version of varchar
+it stores upto 4000ch.
+
+number:- it stores only numeric values.
+syntax:- number(precision,scale)
+
+precision:- it is used to determine the number of digits used to store integer value.
+scale :- it is used to determine the number of digits used to store decimal value within the precision.
+scale is not mandatory,and default value of scale is 0.
+-->To complete the scale it will automatically add the 0 towards the left.
+
+number(5) --> 55555
+number(5,0)-->55555
+number(5,1)-->5555.5
+number(5,3)--> 55.555
+number(5,5)-->.55555
+number(5,7)--> .0055555
+number(5,9) --> .000055555
+
+
+1.009010 p=7,s=6
+0.00010 p=2  s=5
+.++++++++++++++++++++-
+0.10011 p=5   s=5
+0.01    p=1   s=2
+1.001   p=4   s=3
+10.01   p=4   s=2
+010.010 p=5   s=3
+
+
+date:- it stores date type of data 
+oracle specified format 
+1)dd-mon-yy
+04-NOV-22
+or 
+2)dd-mon-yyyy
+04-NOV-2022
+
+
+CLOB:-(character large object)it is used to store only character('A-Z','a-z') which are too long.
+it can store upto 4gb.
+
+BLOB:-(binary large object) used to store the images,mp3,mp4,documents which will be converted into
+binary values.
+-->it stores upto 4gb.
+
+
+chapter 4:- 
+
+statements/commands/languages/subset
+1)DQL:- DATA QUERY LANGUAGE :- select
+ and also i can retrieve the data using 
+projection
+selection
+joins
+
+2)DDL:- DATA DEFINTION LANGUAGE :- create ,drop,truncate,rename,alter
+
+3)DML:-DATA MANIPULATION LANGUAGE:- insert,update,delete
+
+4)TCL:-TRANSACTION CONTROL LANGUAGE:- commit,rollback,savepoint
+
+5)DCL:- DATA CONTROL LANGUAGE:- grant ,revoke
+
+1)DQL:-[DATA QUERY LANGUAGE]:- it is used to retrieve the data from the database.
+select :- it is used to select the data from database and it is used to display.
+note:- the data which is returned will be stored in a result table which is known as 
+result set.
+
+projection:- the process of retrieving the data by selecting the columns is known as 
+projection.
+
+select */distinct col-name expression/aliasing
+from table-name;
+
+distinct:- it is used to remove the duplicates or repeated values.
+--> it must be used as the 1st argument to select clause.
+-->there must be only one distinct keyword in one select statement.
+
+
+
+1)DQL:-[DATA QUERY LANGUAGE]:- it is used to retrieve the data from the database.
+select :- it is used to select the data from database and it is used to display.
+note:- the data which is returned will be stored in a result table which is known as 
+result set.
+
+projection:- the process of retrieving the data by selecting the columns is known as 
+projection.
+
+select */distinct col-name expression/aliasing -->2
+from table-name; --->1
+
+(note:- from checks wheather the given table is present or not inside the db.)
+
+distinct:- it is used to remove the duplicates or repeated values.
+--> it must be used as the 1st argument to select clause.
+-->there must be only one distinct keyword in one select statement.
+
+question 1:- display unique salaries given to enployees.
+question 2:- display unique deptno frm employee table.
+
+expression:-a statement which gives result is known an as expression.
+is a combination of opreands and operator.
+
+aliasing:- it is an alternate name given to a column or expression.
+3 ways to do aliasing:- 
+
+old col-name as(keyword) new col-name
+old col-name new col-name(just by using space)
+old col-name "new col-name"
+
+question 3:- display annualsal given to employees.
+question 4:- display empno,ename,job as designation along with that display annualsal from the 
+employee table.
+
+selection:- the process of retreiving the data by selecting both columns and rows is known as
+selection.
+
+syntax:- select */distinct col-name expression/aliasing --->3)
+         from table-name     --->1)
+         where <filter condn>  -->2) (executes row by row process)
+
+note:- * meaning all.
+ where clause is used to filter the condition.
+
+1)Write A Query To Display all the details of employee who are working as clerk.
+2)Display employee name and salary if they are earning 3000.
+3)WAQTD all the details of employee who are working in deptartment 30.
+--> select *
+    from emp
+    where deptno=30;
+
+4)WAQTD all the details of employee who are earning less than 5000.
+--> select *
+   from emp
+   where sal<5000;
+
+5)WAQTD employee name and salary along with their annualsal if annualsal is more than 20000.
+-->select ename,sal,sal*12 annualsal
+   from emp
+   where sal*12>20000;
+
+6)WAQTD all details of employee who are having reporting manager number as 7566.
+-->select *
+   from emp
+  where mgr=7566;
+
+7)WAQTD employee name and job if they are working as analyst.
+--> select ename,job
+    from emp
+    where job='ANALYST';
+
+8)WAQTD employee name and deptno along with hiredate if the employee joined on '03-DEC-81'.
+-->select ename,deptno,hiredate
+   from emp
+   where hiredate='03-DEC-81';
+
+
+operator:- which is used to perform operation between operands and 
+produce the result.
+
+
+types of operators:- 
+Aeithematic operator:- (+,-*,/,%)
+Relational operator:- >,<,>=,<=,!=(<>),=
+logical operator :- and ,or,not
+special operator:- is,is not,in,not in,like,not like,between,
+not between.
+
+
+AO:-used to perform arithematic operation between the operands.
+
+1)WAQTD the employee salary with 10% of hike.
+-->select sal+sal*10/100 as hike from emp;
+
+2)WAQTD the employees salary with 30% of deduction.
+-->select sal-sal*30/100 as deduc from emp;
+
+3)WAQTD all the details along with annualsal of employees.
+-->select emp.*,sal*12 as annualsal from emp;
+
+Relational operator :- compare the operands and produce the result.
+
+1)WAQTD all the details of the employee who are working in dept 30.
+--> select *
+    from emp
+    where deptno=30;
+
+2)WAQTD all the details of the employee who are working as president.
+-->select * from emp where job='PRESIDENT';
+
+3)WAQTD ename,sal and annualsal who is earning more than 2000.
+-->select ename,sal,sal*12 annualsal 
+from emp
+where sal>2000;
+
+4)WAQTD ename,sal,deptno if the employee earning less than 1500.
+-->select ename,sal,deptno from emp where sal<1500;
+
+5)WAQTD all the details if the employee is not working as clerk.
+-->select * from emp where job!='CLERK';
+
+
+6)WAQTD all the details of employee if they are not working in
+department 20.
+-->select *
+   from emp where deptno<>20;
+
+
+
+logical operator:- 
+AND:-
+
+select */col-name
+from table-name
+where condn-1 and cond-2 and cond-3 .......;
+
+1)WAQTD all the details of the employee if employee is working as 
+clerk in dept 20.
+--> select * from emp where job='CLERK'and deptno=20;
+
+2)WAQTD all the details of the employee if employee is working in dept 30
+and his reporting manager number must be 7839.
+-->select * from emp where deptno=30 and mgr=7839;
+
+3)WAQTD all the details of employee who are earning salary more than 1000
+but less than 5000.
+-->select * from emp where sal>1000 and sal<5000;
+
+or:- 
+1)WAQTD all the details of the employee if employee working as clerk or manager.
+--> select * from emp where job='CLERK' or job='MANAGER';
+
+2)WAQTD ename,sal,deptno if the employee is working in dept 10 or 20.
+--> select ename,sal,deptno from emp where deptno=10 or deptno=20;
+
+3)WAQTD ename,sal,deptno if the employee is earning sal 1250 or 3000.
+--> select ename,sal,deptno from emp where sal=1250 or sal=3000;
+
+4)WAQTD ename,sal,deptno and job if the employee working as clerk in dept 10 or 20.
+-->select ename,sal,deptno,job
+   from emp
+   where job='CLERK' and (deptno=10 or deptno=20);
+
+5)WAQTD all the details of employee working in dept 30 as Analyst OR Manager.
+-->select * from emp where deptno=30 and (job='ANALYST' or job='MANAGER');
+
+not:- it gives opposite data.
+
+1)WAQTD all the details of employee who are not working as clerk.
+--> select * from emp where not job='CLERK';
+
+2)WAQTD all the details of employee who are not working in dept 10 0r 30.
+-->select * from emp where not deptno=10 and not deptno=30;
+
+3)WAQTD all the deatils of employee who is not working as analyst and not working 
+in dept 30.
+--> select * from emp where not job='ANALYST' and not deptno=30;
+
+
+  EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+------- ---------- --------- ---------- --------- ---------- ---------- ----------
+   7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+   7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+   7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+   7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+   7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+   7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+   7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+   7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+   7839 KING       PRESIDENT            17-NOV-81       5000                    10
+   7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+   7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+   7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+   7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+   7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+
+
+   special operator:-
+
+IS:-when you want to evaluate null values
+syntax:-  col-name is null;
+
+1)WAQTD all the deatils of employee who are not earning any comm.
+--> select * from emp where comm is null;
+
+2)WAQTD all the details of the employee who are not earning any salary.
+-->select * from emp where sal is null;
+
+3)WAQTD all the deatils of the employee who are not having any reporting manager.
+-->select * from emp where mgr is null;
+
+is not:- when u want to evaluate not null.
+syntax:- col-name is not null;
+
+1)WAQTD all the deatils of employee who are some comm.
+-->select * from emp where comm is not null;
+
+2)WAQTD all the details of employee who are earning some salary.
+-->select * from emp where sal is not null;
+
+3)WAQTD all the deatils of the employee who are having reporting manager.
+-->select * from emp where mgr is not null;
+
+in:- is used to evaluate multiple data.
+it takes one arugument in LHS and it takes one or more values in RHS.
+syntax:- col-name in (v1,v2,v3.....);
+
+1)WAQTD all the deatils of employee working as clerk or manager.
+--> select * from emp where job in ('CLERK','MANAGER');
+
+2)WAQTD ename,job and deptno if employee are working in dept 20 or 30.
+-->select ename,job,deptno from emp where deptno in(20,30);
+
+3)WAQTD ename,job,mgr if their reporting manager no is 7566 or 7839.
+-->select ename,job,mgr from emp where mgr in(7566,7839);
+
+4)WAQTD name and job of the employee working as clerk or manager or analyst and 
+working dept 10 or 20.
+-->select ename,job from emp where job in('CLERK','MANAGER','ANALYST') and deptno in(10,20);
+
+not in:- it is aslo used evaluate multiple values.
+it takes one arugument in LHS and it takes one or more values in RHS, which is same as in operator
+instead of selecting the rows it rejects those particular rows.
+
+syntax:- col-name not in (v1,v2,v3,....);
+
+1)WAQTD all the deatils of employee who are not working as clerk or manager.
+--> select * from emp where job not in('CLERK','MANAGER');
+
+2)WAQTD ename,job and deptno if employee are not working in dept 20 or 30.
+-->select ename,job,deptno from emp where deptno not in(20,30);
+
+3)WAQTD ename,job,mgr if their reporting manager no is not 7566 or 7839.
+-->select ename,job,mgr from emp where mgr not in(7566,7839);
+
+
+4)WAQTD name and job of the employee not working as clerk or manager or analyst and 
+not working dept 10 or 20.
+-->select ename,job from emp where job not in('CLERK','MANAGER','ANALYST') and deptno not in(10,20);
+
+LIKE:- it is used for pattern matching.
+syntax:- col-name like 'pattern';
+there are two wildcards:- 
+
+%:- it takes one or more character.
+
+_:- it takes only one character.
+
+1)Display names of the employee whoes name starts with character A.
+--> select ename from emp where ename like 'A%';
+
+2)Display names of the employee whoe's name ends with character N.
+--> select ename from emp where ename like '%N';
+
+3)display names whoes name starts with character A and end with charcter S.
+--> select ename from emp where ename like 'A%S';
+
+4)display names of the employee where employee name 2nd charcter will be 'A';
+-->select ename from emp where ename like '_A%';
+
+5)display names of the employee whoe's last 2nd character is 'A'.
+-->select ename from emp where ename like '%A_';
+
+6)display the salary which is having exactly 3 characters.
+--> select sal from emp where sal like '___';
+
+7)WAQTD all the deatils who hired in feb.
+--> select * from emp where hiredate like '%FEB%';
+
+
+8)WAQTD the sal whoes ending with 50.
+-->select sal from emp where sal like '%50';
+
+9)display names whoe's name starts with charcter A or charcter S.
+--> select ename from emp where ename like 'A%' or ename like 'S%';
+
+10)dispaly names of the employee starting with vowels.
+-->select ename from emp where ename like 'A%' or ename like 'E%' or ename like 'I%' or
+  ename like 'O%' or ename like 'U%';
+
+
+not like:- opposite to like operator.
+
+1)Display names of the employee whoes name doesn't starts with character A.
+--> select ename from emp where ename not like 'A%';
+
+2)Display names of the employee whoe's name ends with character N.
+--> select ename from emp where ename not like '%N';
+
+3)display names whoes name starts doesn't with character A and doesn,t end with charcter S.
+--> select ename from emp where ename  not like 'A%S';
+
+4)display names of the employee where employee name 2nd charcter will not be 'A';
+-->select ename from emp where ename not like '_A%';
+
+5)display names of the employee whoe's last 2nd character ids not  'A'.
+-->select ename from emp where ename not like '%A_';
+
+6)display the salary which is not having  exactly 3 characters.
+--> select sal from emp where sal not like '___';
+
+7)WAQTD all the deatils who are not  hired in feb.
+--> select * from emp where hiredate not like '%FEB%';
+
+
+8)WAQTD the sal whoes not ending with 50.
+-->select sal from emp where sal not like '%50';
+
+9)display name starting with consonents.
+-->select ename from emp where ename not like 'A%' and ename not like 'E%' and ename not like 'I%'
+and ename like 'O%' and ename like 'U%';
+
+
+between :- it is used for range purpose.
+syntax:- col-name between lower range and higher range;
+
+
+1)WAQTD all the deatils of employee who are earing from 1000 to 3000.
+--> select * from emp where sal between 1000 and 3000;
+
+2)WAQTD details who hired in 1981.
+--> select * from emp where hiredate between '01-JAN-81' and '31-DEC-81';
+
+
+not between:- opposit to between.
+syntax:- col-name not between lower range and higher range;
+
+1)WAQTD all the deatils of employee who are not earing from 1000 to 3000.
+--> select * from emp where sal not between 1000 and 3000;
+
+2)WAQTD details who are not hired in 1981.
+--> select * from emp where hiredate not between '01-JAN-81' and '31-DEC-81
+
+
+
+note:- when u r dealing with date type of data maintain this:-
+
+on --->      =
+before -->   <
+after -->   >
+from --->    >=
+
+
+1)WAQTD all the details who hired on 03-dec-81.
+-->select * from emp where hiredate='03-DEC-81';
+
+
+2)WAQTD all the details who hired before 02-APR-81.
+--> select * from emp where hiredate < '02-APR-81';
+
+
+3)WAQTD all the details who hired after 02-APR-81.
+-->select * from emp where hiredate > '02-APR-81';  
+
+4)WAQTD all the deatils who hired from 02-APR-81.
+-->select * from emp where hiredate >='02-APR-81';  
+
+
+DDL:-  data definition language 
+(create,drop,truncate,rename,alter)
+
+-->used to perform some operation inside database.
+-->using ddl any changes u do all are permenent chages
+to database because we have a direct connection
+from ddl statements to database.
+
+1)Create :- it is used to create the table structure.
+
+syntax:- 
+
+create table table-name(col-name1 datatype(size) constraint,
+col-name2 datatype(size) constraint,col-name3 datatype(size) constraint,
+--------------------------------
+-----------------------
+----------------
+foreign key(col-name) references parent-table-name(col-name));
+
+note:- example for check constraint -->
+phno number(10) check(length(phno)=10).
+
+assignment:- create a table called order having (oid,oname and odate as attribute).
+and child table as customer which is having (cid,cname,cphno,oid as attributes).
+
+how to create copy of the table?
+syntax:- create table new-table-name as select statmt;
+
+ex:- we r going to create a copy of emp table to e1 table.
+   create table e1 as select * from emp;
+
+assignment :- create a copy of the table emp to e2.
+
+note****:- dont use the main emp table for ddl operation from now.
+
+
+
+DDL
+
+drop:- it is used to delete the table records.
+
+syntax:- drop table table-name;
+ex:- drop table e1;
+
+once the table is dropped ,now the table is present in recycle bin.
+if u forget the table u dropped u can see the table name by calling (select * from recyclebin;)
+-->once the table is present inside recyclebin u have 2 options:- 
+1)restore
+2)permenently delete
+
+1)flashback:- we used to restore the data, if and only if the table is present in 
+recyclebin.
+
+syntax:- flashback table table-name to before drop;
+ex:- flashback table e1 to before drop;
+
+2)purge:- it is used to permanently delete the data from db,if and only if the table
+present in recycle bin.
+
+syntax:- purge table table-name;
+ex:- purge table e1;
+
+to drop and permenently delete at a time:-
+syntax:-  drop table table-name purge;
+ex:-drop table e2 purge;
+
+
+truncate:- it is used to delete the table records permenently.
+--> cannot restore the deleted records.
+-->but table structure is present.
+
+syntax:- truncate table table-name;
+ex:- truncate table e1;
+
+Rename:- it is used to rename the table-name.
+syntax:- rename old-table-name to new-table-name;
+ex:- rename customer1 to cust;
+
+alter :- using alter
+1)we can rename the table-name and column name.
+2)we add a cloumn and we can drop a column.
+3)we can change datatype and size.
+
+1)rename the table-name using alter.
+syntax:- alter table old-table-name rename to new-table-name;
+ex:-  alter table cust rename to customer1;
+
+2)rename column-name using alter.
+syntax:- alter table table-name rename column old-col-name to new-col-name;
+ex:- alter table e2  rename column empno to eid;
+
+3)add a column using alter.
+syntax:- alter table table-name add column-name datatype(size);
+ex:- alter table customer1 add cemail varchar2(20);
+
+4)drop column using alter.
+syntax:-  alter table table-name drop column col-name;
+ex:- alter table customer1 drop column cemail;
+
+5)change the datatype and size using alter.
+note:- changing the datatype can be done if and only if the entire column is empty.
+(cannont change the datatype if already u have values in that column).
+syntax:- alter table table-name modify col-name datatype(size);
+ex:- alter table customer1 modify cname number(3);
+
+
+
+
+
+DML:- Data Manipulation Language
+
+--> to modify the table data we use dml statements.
+-->DML changes are not permanent changes to the database,bcz it is not connected 
+directly to the database.
+--> to make dml changes as permanent u have to use tcl commands.
+
+INSERT , UPDATE ,DELETE
+
+1)INSERT :- it is used to insert the values into the table.
+
+syntax:- insert into table-name values(v1,v2,v3,v4.....);
+ex:-insert into order1 values(1,'MOBILE','01-JAN-1996');
+
+
+syntax 2:- insert into table-name(colname1,colname2,...) values(v1,v2,...);
+ex:- insert into order1(oid,odate) values(6,'01-JAN-2022');
+
+2)UPDATE:- it is used update the given values.
+syntax:- update table-name set expression where condn;
+ex:- update table-name set teamname='SRH' where teamno=2;
+
+
+Delete :- it is also used to delete the table records.
+-->table records get deleted but structure remains same.
+-->it can also delete entire table records and some specific records also.
+
+syntax:- delete from table-name where cond; (to delete some specific record)
+ex:- delete from cricket where teamno=4;
+
+(to delete all the records using delete )
+syntax:- delete from table-name;
+ex:-delete
+
+
+
+TCL :-transaction Control Language :- which is used
+to do some unit of work into the database.
+(or)
+it is used to control the transaction
+done on the database.
+
+--> it is applicable only for dml statements.
+ so here, dml changes are not permanent to make it 
+permanent we use tcl.
+
+1)commit:- save the transaction(insert,update,delete) into the database permanently.
+
+syntax:- commit.
+
+2)rollback :- it is used to get back the prevoius records.
+--.(only the saved data from the database will be given).
+
+syntax:- rollback.
+
+--> rollback will not work after commit.
+
+3)Savepoint:- if u want to insert some data and if u dont want to save all the changes then u can make use
+of savepoint.
+
+-->(this statement is used to mark the position or restoration points).
+
+syntax:- savepoint savepoint-name;
+after savepoint --->rolback to savepoint-name;
+
+
+DCL:- data control Language:- it will control the flow of execution of the data
+between users.
+
+scott        Hr
+emp          we dont have emp table,but still if he wants to access the table 
+             the scott should give the permission.
+
+GRANT,REVOKE.
+
+1)GRANT :- it is used to give the permission.
+syntax:- grant sqlstamt
+         on table-name
+         to user;
+
+2)REVOKE:- it is used to take back the permission.
+syntax:-   Revoke sqlstmt
+           on table-name
+           from user;
+
+
+
+
+Functions:- 
+
+set of instruction used to do some specific task.
+it has:-
+function name
+args
+return type
+
+types:- 
+Single Row Function.
+Multi Row Fuction.
+
+1)Single Row Function:- it takes n number of input and executes
+and produce n number of output.
+
+types :-
+1)Character Function
+2)Number Function
+3)Date Function
+4)Special Function
+
+
+1)Character Function:- it is applicable for alphanumeric data and it gives
+output as either character or number.
+
+1)UPPER():- it is used to convert the given data into uppercase.
+syntax:- upper(arg1)
+
+ex:- WAQTD all the job of employees in uppercase.
+--> select upper(job) from emp;
+
+ex:- WAQTD qspiders in uppercase.
+--> select upper('qspiders') from dual;
+
+note:- if u dont have the data in any exisisting table, but still if u want to
+execute you can make use of dummy table called dual.
+
+ex:- WAQTD jspiders in uppercase.
+--> select upper('jspiders') from dual.
+
+2)Lower():- it is used to convert the data into lowercase.
+syntax:- lower(arg1)
+
+ex:- WAQTD the names of the employee in lowercase.
+-->select lower(ename) from emp;
+
+ex:- WAQTD PYSPIDERS In lowercase.
+-->select lower('PYSPIDERS') from dual;
+
+3)Initcap():- it converts character values to uppercase for the first letter of each word and all other as lowercase.
+syntax:- initcap(arg1)
+
+ex:- select initcap('hey who r u') from dual.
+--> Hey Who R U.
+
+4)length():- it is used to get the length of the given data.
+syntax:- length(arg1)
+
+ex:- WAQTD the employee name and number of characters of the emmployee name.
+--> select ename,length(ename) from emp;
+
+ex:- WAQTD length of jspiders.
+--> select length('jspiders') from dual;
+
+ex:- WAQTD employee name if employee name contains 5 character's.(Without using like operator).
+-->select ename from emp where length(ename)=5;
+
+5)Reverse() :- it is used to reverse the given data.
+syntax: reverse(arg1)
+
+ex:- WAQTD the employee name in reverse.
+-->select reverse(ename) from emp;
+
+ex:- reverse the given data. a)jspiders b)qspiders
+--> select reverse('jspiders'),reverse('pspiders') from dual;
+
+6)concat():- always merge string1 to string2 ,if either of the string is null,concat function returns the non-null argument.
+if both string are null,concat returns null.
+syntax:- concat(string1,string2)
+
+ex:- merge the ename and job column.
+--> select concat(ename,job) from emp;
+
+ex:- WAQTD the names of the employee with hi before all the names.
+--> select concat('hi ',ename) from emp;
+
+concat operator(||) :- if u want to merge the given strings u can make use of ||.
+
+ex:- select ename||' is working as '||job from emp;
+
+7)Replace():- it is used to replace the given data.
+replace(arg1,arg2)  (jspiders,'j','l') spiders
+
+arg1:- give the main string.
+arg2 :- give the search string.'
+arg3 :- give the replace string.
+
+ex:- WAQTD jspiders as qspiders.
+select replace('JSPIDERS','J','Q') from dual;
+
+ex:- WAQTD the names of the employee where the character 'S' is replaced with 'Z'.
+--> select replace(ename,'S','Z') from emp;
+
+note:- if u dont pass the 3rd argument,the search string act as remove string from the main string.
+
+ex:- replace(' jspiders',' ','Z') --> spiders
+
+ex:- WAQTD number of character 'A' present in the given string called 'KANNADA'.
+--> select length('KANNADA') -length(replace('KANNADA','A') from dual;
+
+
+
+
+continue of character function.
+
+8)Trim() :- used to delete the char frm starting
+or ending or both.
+
+syntax:- trim(leading/trailing/both 'char' from 'originalstring')
+
+ex:- remove the ending character 'A' by the given string 'BACKSPACE'.
+select trim(trailing 'A' from 'BACKSPACE') from dual; 
+output:- backspace.
+
+ex:- 
+SQL> select trim(leading 'P' from 'PARROT') from dual;
+
+TRIM(
+-----
+ARROT
+
+SQL> select trim(trailing 'P' from  'PARROTP') from dual;
+
+TRIM(T
+------
+PARROT
+
+SQL> select trim(both 'P' from 'PARROTP') from dual;
+
+TRIM(
+-----
+ARROT
+
+
+9)substr:- full form is substring,used to extract string ina given string.
+
+syntax:- substr(mainstring,starting index psition,no of char u want)
+
+ex:- WAQTD the first 3 characters from the employee name.
+-->select substr(ename,1,3) from emp;
+
+ex:- diplay last 3 characters of employee name.
+-->select substr(ename,-3) from emp;
+
+
+ex:- WAQTD the first half of the employee name.
+-->
+
+
+ex:-WAQTD the last half of the employee name.
+-->
+
+10)Instr:- full form is instring, we use it for searching of occerence.
+syntax:- instr(mainstring,search string,starting index position,no of occurenece)
+
+if u dont have any occurence it will give us 0 as output.
+
+1)display the index of the data where 2nd A is present.  a)AMAN
+-->select instr('AMAN','A',1,2) from dual;
+
+2)WAQTD names of the employee if at least one A is presnt in the name.
+--> select ename from emp
+    where instr(ename,'A',1,1)>0;
+                
+Number Function:- used to do operation using numeric values.
+
+1)mod():- it gives us remainder.
+syntax:- mod(arg1,arg2)
+note:- arg2 will divide the arg1 and gives the remainder.
+
+ex:- select mod(10,2) from dual;
+-->0
+
+2)round() :- it will round upto the next integer value if its range is from 5-9 or else
+return the same integer.(0-4)
+
+synntax:- round(arg1)
+
+ex:-  select round(11.2) from dual;  --> 11
+ex:-  select round(11.6) from dual; --> 12
+ex:- select round(11.08) from dual; -->11
+
+3)trunc:- removes the decimal values.
+syntax:-  trunc(arg1)
+
+ex:- select trunc(44.7) from dual; --> 44
+ex:- select trunc(44.3) from dual; --> 44
+
+4)power:- it gives exponentional values.
+syntax:- power(arg1,arg2)
+
+ex:- select power(2,4) from dual;  -->16
+
+5)sqrt:- gives the sqrt of the given value.
+--> syntax:- sqrt(arg1)
+
+ex:- select sqrt(49) from dual;  -->7
+
+
+6)abs :- gives the absolute values.
+syntax:- abs(arg1)
+ex:- select abs(-4) from dual;
+
+
+
+date Function:- 
+it is used perform operation on dates.
+1)ADD_MONTHS(ARG1,ARG2)
+2)MONTHS_BETWEEN(ARG1,ARG2)
+3)LAST_DAY(ARG1)
+4)EXTRACT(D/M/Y FROM SYSDATE)
+
+
+1)add_months('arg1','arg2'):-
+it is used to add the months to the
+given date.
+
+note:- sysdate:- which gives system date.
+current date:- which gives todays date.
+systimestamp :- which gives system date
+along with time with milliseconds.
+
+1)WAQTD the ename and hiredate by adding 12 months to all the hiredate.
+-->select ename,add_months(hiredate,12) as hiredate
+from emp;
+
+2)WAQTD sysdate adding 12 months to it.
+-->select add_months(sysdate,12) from dual;
+
+2)Months_between:- it is used to get no. of months between 2 gievn dates.
+syntax:- months_between(arg1,arg2)
+
+1)display the months between 01-JAN-2020 TO 01-DEC-2020.
+-->select months_between('01-DEC-2020','01-JAN-2020') from dual;
+
+2)display the experience of the employee till date in months.
+-->select months_between(current_date,hiredate) from emp;
+
+3)display the experience of the employee till date in years.
+-->select round(months_between(current_date,hiredate)/12) from emp;
+
+ex:- student table
+
+sname    dob
+A        01-JAN-1998
+B        01-DEC-1997
+C        03-FEB-1998
+D        06-JUN-1999
+
+4) display the sname and age of the student.
+-->select sname,months_between(current_date,dob)/12 as age from dual
+
+3)last_day():- it is used to get the last date in the given date.
+syntax:- last_day(arg1)
+
+1)display the last day of this cureentdate.
+-->select last_day(current_date) from dual;
+
+4)extract():- it is used to extract the month /year from sydate.
+syntax:- extract(day/month/year from sysdate)
+
+ex:- exract the current year.
+--> select extract(year from sysdate) from dual;
+
+special function:- 
+
+1)nvl
+2)to_char
+
+1) a)nvl(arg1,arg2) :- to overcome the drawback of null values we use nvl .(it is used
+to substitute value for null).
+--> if arg1 is null,it substitutes the 2nd argument.
+-->if arg1 is not null it will not substitute the 2nd argument.
+
+1)WAQTD sal,comm and sal+commission.
+--> select sal,comm, sal+nvl(comm,0) from emp;
+
+b)nvl2(arg1,arg2,arg3) :- if arg1 is null it will substitute arg3.
+if arg1 is having value it substitutes arg2.
+
+1)display ename,sal,comm for all the employees if there earning some commission
+display earning some comm if not display no commision.
+-->select ename,sal,nvl2(comm,'earning comm','no comm') as comm from emp;
+
+2)to_char:- used to change the date format.
+syntax:- to-char(arg1,arg2) 
+
+arg1 :- it takes date.
+arg2 :- it takes date format.
+
+date format:- dd--> day in number
+              dy -->3 char of day
+              day--.day in char
+              mm-->month in number
+              mon --> 3 char of month
+              month -->month in char
+              yy-->last 2 digit of year
+              yyy--> last 3 digit of year
+              yyyy--> 4 digit of year
+              year --> year in words.
+
+1)dispaly the current date in 'dd-yy-mon' format.
+--> select to_char(current_date,'dd-yy-mon') from dual;
+
+2)dispaly hiredate in 'DY-YY-MM' format.
+--> select to_char(hiredate,'DY-YY-MM') from emp;
+
+3)WAQTD details of the employee who hired in DEC.
+-->select * from emp where to_char(hiredate,'MON')='DEC';
+
+4)WAQTD details of the employee who hired in 17th.
+-->select * from emp where to_char(hiredate,'DD')=17;
+
+5)WAQTD details of employee hireda in year 80.
+-->select * from emp where to_char(hiredate,'yy')=80;
+
+
+
+GROUP FUNCTION/MULTI ROW FUNCTION/AGGREGATE FUNCTION
+:- it takes n number of inputs and executes and produce one single output.
+
+TYPES OF GROUP FUNCTION:-
+1)MAX()
+2)MIN()
+3)SUM()
+4)AVG()
+5)COUNT()
+
+1)MAX():- it gives maximum values based on the specific column.
+syntax:- max(arg1)
+
+ex:- WAQTD the maximum sal given to the employees.
+-->select max(sal) from emp;
+
+ex:- WAQTD the maximum salary given to salesman.
+--> select max(sal)
+    from emp
+    where job='SALESMAN';
+
+ex:- WAQTD the maximum salary given to dept 10.
+--> select max(sal) from emp where deptno=10;
+
+2)MIN():- it is used to give the minimum values based on sepecific column
+syntax:- min(arg1)
+
+1)WAQTD the minimum salary given to employees.
+-->select min(sal) from emp;
+
+2)WAQTD the minimum salary given to analyst.
+--> select min(sal) from emp where job='ANALYST';
+
+3)WAQTD the minimum salary given to dept 30.
+-->select min(sal) from emp where deptno=30;
+
+3)SUM():- it gives total value based on any specified column.
+syntax:- sum(arg1)
+
+1)WAQTD the total salary given to the employees.
+-->select sum(sal) from emp;
+
+2)WAQTD the total salary given to manager.
+-->select sum(sal) from emp where job='MANAGER';
+
+3)WAQTD the total salary given to the employees working in dept 10 and whoes name
+start with vowels.
+-->select sum(sal) from emp 
+where deptno=10 and substr(ename,1,1) in ('A','E','I','O','U');
+
+4)WAQTD the total salary given to employees whoes name start with consonents.
+--> select sum(sal) from emp where substr(ename,1,1) not in('A','E','I','O','U');
+
+4)AVG():- it gives avg value based on specific column.
+syntax:- avg(arg1)
+
+1)WAQTD avg salary given to employees.
+-->select avg(sal) from emp;
+
+2)WAQTD avg salary given to dept 20.
+-->select avg(sal) from emp where deptno=20;
+
+5)COUNT():- it is used to give the number of values present in the column.
+--> syntax:- count(*/col-name)
+
+1)WAQTD the number of employees present.
+--> select count(*) from emp;
+
+2)WAQTD number of employees getting commission.
+--> select count(comm) from emp;
+
+3)WAQTD number of employees having reporting manager.
+-->select count(mgr) from emp;
+
+4)WAQTD number of employees working as salesman.
+-->select count(*) from emp where job='SALESMAN';
+
+note:- GROUP FUNCTION cannot be used in where clause.
+-->Along with Group Function no other columns can be written in select clause.
+-->Group Function ignores null. 
+
+
+
+GROUP BY CLAUSE.
+
+it is used to group the records.
+
+syntax:- select group function/group by expression   -->4)group by group
+         from emp   -->1)
+         where <condn>(row by row)  -->2)
+         group by col-name; (row by row) -->3)
+
+1)WAQTD NO. OF EMPLOYEES WORKING IN EACH DEPARTMENT.
+ --> select count(*),deptno      -->3)
+     from emp    --->1)
+     group by deptno;    -->2)
+
+2)WAQTD no. of employees working in each job.
+    --> select count(*),job
+        from emp
+        group by job;
+
+3)WAQTD maximum sal given to each dept.
+-->select max(sal),deptno
+   from emp
+   group by deptno;
+
+4)WAQTD minimum sal given to each job if the employee name starts with S.
+--> select min(sal),job
+    from emp             -->1)
+    where ename like 'S%'  -->2)
+    group by job;
+
+5)WAQTD no of employees getting comm in each dept.
+--> select count(*),deptno
+    from emp
+    where comm is not null
+    group by deptno;
+(or)
+
+select count(comm),deptno
+from emp
+group by deptno;
+
+6)WAQTD the total sal given to each job if employees earn more than 2000.
+--> select sum(sal),job
+    from emp
+    where sal>2000
+    group by job;
+
+
+
+answers for assignment.
+
+1)Select count(*),deptno
+  from emp
+  where job!='PRESIDENT'
+  group by deptno;
+
+2)select sum(sal),job
+   from emp
+   group by job;
+
+3)select count(*),deptno
+  from emp
+  where job='MANAGER'
+  group by deptno;
+
+4)select avg(sal),deptno
+  from emp
+  where deptno!=20
+  group by deptno;
+
+5)select count(*),job
+  from emp
+  where ename like '%A%'
+  group by job;
+
+6)select count(*),avg(sal),deptno
+  from emp
+  where sal>2000
+  group by deptno;
+
+7)select sum(sal),count(*),deptno
+  from emp
+  where job='SALESMAN'
+  group by deptno;
+
+8)select count(*),max(sal),job
+  from emp
+   group by job;
+
+9)select max(sal),deptno
+  from emp
+   group by deptno;
+
+10)select count(*),sal
+   from emp
+   group by sal;
+
+Having Clause : -
+it is used to filter the groups.
+when to use (if u have condition based on group function then only use the having clause).
+
+syntax:- select group function/group by exp  -->5 (group by group)
+         from table-name  -->1)
+         where <filter the roecrds condn>  -->2 (row by row)
+         group by col-name -->3 (row by row)
+         having <filter the groups condn>-->4 (group by group)
+
+
+1)WAQTD the maximum salary given to employees in each dept if maximum sal is more than 3000.
+--->select max(sal),deptno
+    from emp
+    group by deptno
+    having max(sal)>3000;
+
+
+having clause :-
+
+syntax:- select gf/g by exp -->5 group by group
+         from t-n  -->1 
+         where <cond> -->2 row by row
+         group by col-name -->3 row by row
+         having <cond>;-->4 group by group
+
+1)WAQTD no. of employees working in each dept ,at least 
+  4 employees must be working in each dept.
+->select count(*),deptno
+  from emp
+  group by deptno
+  having count(*)>=4;
+
+2)WAQTD the designation in which there are at least 
+    2 employees present.
+-->select count(*),job
+   from emp
+   group by job
+   having count(*)>=2;
+
+3)WAQTD the names that are repeated.
+-->select count(*),ename
+   from emp
+   group by ename
+   having count(*)>1;
+
+4)WAQTD the salary that are repeated.
+--> select count(*),sal
+    from emp
+    group by sal
+    having count(*)>1;
+
+5)WAQTD no. of employees working in each dept having at least 2 emp's
+character  'A' or 'S' in their names.
+--> select count(*),deptno
+    from emp
+    where ename like '%A%' or ename like '%S%'
+    group by deptno
+    having count(*)>=2;
+
+6)WAQTD job and total salary of each job,if the having total salary
+of each job is greater than 3450.
+-->select job,sum(sal)
+   from emp
+   group by job
+   having sum(sal)>3450;
+
+
+7)WAQTD job and total salary of the employees if the employees are
+earning more than 1500 and having 2 employees.
+--> select job,sum(sal)
+    from emp
+    where sal>1500
+    group by job
+    having count(*)>=2;
+    
+    
+ order by clause:-
+ used to sort the data either asscending or descending.
+
+select */col-name
+from t-n    
+order by col-name asc/desc;
+
+or
+
+select gf/g by exp
+from t-n
+where condn
+group by col-name
+having <condn>
+order by col-name asc/desc;
+
+
+-->if you are not assigning asc or desc by default it will sort in asscending order.
+--> to sort the data instead of giving column name we can also use the column number.
+
+1)WAQTD the salary in asscending order.
+--> select sal
+    from emp
+    order by sal;
+
+2)WAQTD the names of the employee in descending order.
+-->select ename
+   from emp
+   order by ename desc;
+
+3)WAQTD the details of employee according to hiredate.(the last employee hired must come first)
+--> select * 
+    from emp
+    order by hiredate desc;
+
+4)WAQTD the details of employee according to hiredate.(the first employee who got hired must come 1st).
+--> select *
+    from emp
+    order by 5 asc;
+5)WAQTD name,sal of the employee sort according to ename asc.
+  --> select ename,sal
+      from emp
+      order by 1 asc;
+
+
+SUBQUERY :- query inside another query is known as subquery.
+
+-->there are two main queries 
+1)OUTER OR MAIN QUERY
+2)INNER OR SUB QUERY
+
+workflow:- 
+
+1)subquery gets executed and produce output .
+2)The output of subquery is taken as input to the outer query.
+3)The outer query gets executed and produce the complete result.
+
+note:- Outer query or main query is dependent.
+--> the query which is written inside the paranthesis is subquery.
+
+
+syntax:-  
+          select */col-name 
+          from table-name 
+          where col-name =/in (select col-name 
+                               from table-name
+                               where <condn>);
+when we have to use subquery ?
+--> there are 5 cases
+
+case 1) whenever we have unknown present in the question we use subquery to find
+the unknown.
+
+1)WAQTD name of the employee earning more than ALLEN.
+--> 
+      select ename
+      from emp              
+      where sal>(select sal from emp where ename ='ALLEN');
+
+2)WAQTD details of employee who are earning same as miller.
+-->       select * 
+          from emp                   
+          where sal=(select sal from emp where ename='MILLER');
+
+3)WAQTD details of employee who hired after jones.
+-->   select *
+      from emp
+      where hiredate>(select hiredate from emp where ename='JONES');
+
+4)WAQTD names of the employee earning less than scott.
+-->  select ename from emp
+     where sal<(select sal from emp where ename='SCOTT');
+
+
+5)WAQTD names of the employee who are designation same as SMITH.
+--> select ename from emp
+    where job=(select job from emp where ename ='SMITH');
+
+6)WAQTD details of the employee who are working in same department as JAMES.
+--> select * from emp
+    where deptno =(select deptno from emp where ename ='JAMES');
+
+
+7)WAQTD all the details of the employees working
+ in the same desgination as MILLER and earning more than 1500.
+
+--> select * from emp
+   where sal>1500 and job=(select job from emp where ename='MILLER');
+
+
+8)WAQTD details of the employee earning more than smith but less than king.
+--> select * from emp 
+    where sal>(select sal from emp where ename ='SMITH') and sal<(select sal from emp where ename='KING');
+
+
+9)WAQTD name,sal and deptno of the employees if the employee is earning commission in dept 20
+and earning salary more than scott.
+-->select ename,sal,deptno from emp 
+   where comm is not null and deptno=20 and sal>(select sal from emp where ename='SCOTT');
+
+
+10)WAQTD name and hiredate of the employees who's name ends with 'S' and hired after James.
+-->select ename,hiredate 
+ from emp
+ where ename like '%S' and hiredate>(select hiredate from emp where ename='JAMES');
+
+11)WAQTD no. of employees working as salesman in the dept 20 and earning commission more than smith and hired after king.
+-->select count(*) from emp
+   where job='SALESMAN' and deptno=20 and 
+   comm>(select comm from emp where ename='SMITH') and hiredate>(select hiredate
+   from emp where ename='KING');
+
+There are two types of subquery:-
+ 
+1)single row subquery
+2)multi row subquery
+
+1)Single row subquery:- subquery return exactly
+one record or values is known as single row subquery.
+--> we can use (airethematic and special (in) operator).
+
+1)WAQTD the employee names who are working in new york.
+-->select ename from emp where deptno=(select deptno
+    from dept where loc='NEW YORK');
+
+2)WAQTD the employee details who are working in dept SALES.
+-->select * from emp where deptno=(select deptno from dept 
+where dname='SALES');
+
+3)display the department details of smith.
+-->select * from dept where deptno=(select deptno from emp
+where ename='SMITH');
+
+4)WAQTD the dname of employee who's empno is 7566.
+-->select dname from dept where deptno=(select deptno
+from emp where empno=7566);
+
+5)WAQTD all the details of the employee working as a manager
+in the department accounting.
+-->select * from emp
+   where job='MANAGER' and deptno=(select deptno from dept
+   where dname='ACCOUNTING');
+
+
+6)WAQTD all the details of the employee working in the same
+designation as Miller and works in location new york.
+-->select * from emp 
+   where job=(select job from emp where ename='MILLER')
+  and deptno=(select deptno from dept where loc='NEW YORK');
+
+7)waqtd number of employees working as a clerk in the same 
+deptno as smith and earning more than king hired after martin 
+in the location BOSTON. 
+-->select count(*)
+   from emp
+   where job='CLERK' and deptno=(select deptno from emp where 
+ename='SMITH') and sal>(select sal from emp where ename='KING')
+and hiredate>(select hiredate from emp where ename='MARTIN')
+and deptno=(select deptno from dept where loc='BOSTON');
+
+
+2)Multi row subquery:- subquery returns more than one record or value
+is known as multi row subquery.
+-->we can use only special operator(in).
+
+1)WAQTD the department details of employee earning 3000.
+--> select * from dept where deptno in(select deptno from emp where sal=3000);
+
+2)WAQTD the dname of employees working as clerk.
+-->select dname from dept where deptno in(Select deptno from emp
+where job='CLERK');
+
+3)waqtd all the deatils of employee working in accounting and sales.
+-->select * from emp
+   where deptno in(select deptno from dept where dname in('ACCOUNTING','SALES');
+
+
+
+
+case 2:- display the data from one table but condition based
+on another table.
+-->must and should have the common column between two tables.
+
+
+
+case 3:- used to find the maximum and minimum values.
+
+1)WAQTD details of employee getting maximum salary
+--> select * from emp where sal=(select max(sal) from emp);
+
+2)WAQTD details of employee getting minimum salary.
+--> select * from emp where sal=(select min(sal) from emp);
+
+3)WAQTD the 2nd max salary.
+-->select max(sal) from emp where sal<(select max(Sal) from emp);
+
+4)WAQTD the deatils of employee getting 2nd max salary.
+-->select * from emp where sal =(select max(sal) from emp where sal<(select max(Sal) from emp));
+
+5)WAQTD 3rd maximum salary.
+-->select max(sal) from emp where sal<(select maX(sal) from emp where sal<(select max(sal) from emp));
+
+6)WAQTD 4th minimum salary.
+-->select min(sal) from emp where sal>(select min(sal) from emp where sal>(select min(sal) from emp where sal>(select min(sal) from emp)));
+
+7)WAQTD details of employee getting 2nd minimum salary.
+-->select * from emp where sal=(select min(sal) from emp where sal>(select min(sal) from emp));
+
+
+
+case 4:- 
+we have subquery operators
+1)ALL:- it is special operator used along with a relational(<,>,<=,>=,) to compare 
+the values present at the RHS.
+--> ALL operator returns true if all the values at the RHS have satisfied the condition.
+
+1)WAQTD ename,sal if sal is greater than dept 10.
+-> select ename,sal from emp
+   where sal >ALL(select sal from emp where deptno=10);
+
+2)WAQTD ename,job,sal is less than analyst.
+-->select ename,job,sal from emp where sal<all(select sal from emp where job='ANALYST');
+
+3)WAQTD names of the employee earning more than miller.
+--> select ename from emp where sal>all(select sal from emp where ename='MILLER');
+
+
+4)waqtd name of the employee if the employee earns less than employees working as salesman.
+-->select ename from emp where sal<all(select sal from emp where job='SALESMAN');
+                                   note:- < all(1600,1250,1250,1500)
+
+
+2)ANY:- it is a special operator used along with a relational op(>,<,>=,<=) to compare the value present at the 
+RHS.
+--> any op returns true if one of the values at the RHS have satisfied the condition.
+
+
+1)WAQTD names of the employee earns less than at least a salesman.
+-->select ename from emp where sal<any(select sal from emp where job='SALESMAN');
+
+2)WAQTD names of the employee earns more than at least ADAMS.
+--> select ename from emp where sal>any(Select sal from emp where ename='ADAMS');
+
+3)WAQTD details of employee earns more than at least dept 20.
+-->select * from emp where sal>any (select sal from emp where deptno=20);
+
+
+
+case 5:- employee and manager relation
+
+
+employye will have empno   
+(empno) manager will have (mgr)
+
+
+both manager and employee are in one single table 
+so u have to find the employee,manager relation.
+
+
+1)WAQTD details of smith's manager.
+-->select * from emp where empno=(select mgr from emp where ename='SMITH');
+
+2)WAQTD details of ALLEN'S manager.
+--> select * from emp where  empno=(select mgr from emp where ename='ALLEN');
+
+3)WAQTD details of JONES manager if his manager working as manager.
+-->select * from emp where empno=(select mgr from emp where ename='JONES') 
+   and job='MANAGER';
+
+4)WAQTD name of the employee who are reporting to king.
+--> select ename from emp where mgr=(select empno from emp where ename='KING');
+
+5)WAQTD deatils of the employee who are reprting to JONES and working in dept 
+30 or 20.
+-->select * from emp where mgr=(select empno from emp where ename='JONES') and deptno in(20,30);
+
+6)display simth's mangers manger.
+--> select ename from emp where empno=(select mgr from emp where empno=(select mgr from emp
+     where ename='SMITH'));
+
+7)WAQTD name of BLAKE'S manager's manager.
+-->select ename from emp where empno=(select mgr from emp where empno=
+(select mgr from emp where ename='BLAKE'));
+
+
+8)WAQTD details of the employee who are reporting to SMITH's manager.
+-->select * from emp where mgr=(select empno from emp where empno=(select mgr from emp 
+where ename='SMITH'));
+
+9)display dname of jones manager.
+--> select dname from dept where deptno=(select deptno from emp
+where empno=(select mgr from emp where ename='JONES'));
+
+10)display loc of simth's manager's manager
+-->select loc from dept where deptno=(select deptno from emp where 
+  empno=(select mgr from emp where empno=(select mgr from emp
+  where ename='SMITH')));
+
+
+
+joins:- used to retreive the data from the
+multiple table's simultaneously.
+
+when?
+when u want to display the data from multiple
+tables and condition based multiple tables.
+
+there are two syntax:- 
+1)ORACLE syntax:- if the join condn is written
+using where clause ,it is known as ORACLE syntax.
+
+2)ANSI syntax:- if the join condn id written using on 
+clause, it is known as ANSI syntax.
+
+types of joins:- 
+1)INNER/EQUI JOIN
+2)OUTER JOIN
+-->left outer join
+-->right outer join
+-->full outer join
+3)CROSS JOIN
+4)NATURAL JOIN
+5)SELF JOIN
+
+1)INNER JOIN :-it gives only matching records.
+-->it is also also known as equi join.
+-->if we use inner join one common column must be present
+between two tables.
+-->(equi join ,we use =operator).
+
+syntax:- select */column name
+oracle   from table-1,table-2
+         where join cond;
+
+ANSI :- select */col-name
+        from table-1 inner join table-2
+        where <join condn>;
+
+1)WAQTD ename,dname.
+--> select ename,dname
+    from emp,dept
+    where emp.deptno=dept.deptno;
+
+2)WAQTD all the details of employee and deparment table.
+-->select * from emp,dept where emp.deptno=dept.deptno;
+
+
+3)WAQTD ename,dname and loc of the employees.
+-->select ename,dname,loc 
+  from emp,dept 
+  where emp.deptno=dept.deptno;
+
+
+4)WAQTD ename,sal,dname,loc of the employees.
+-->select ename,sal,dname,loc
+   from emp inner join dept
+   on emp.deptno=dept.deptno;
+
+5)WAQTD ename,loc who are working in newyork location.
+-->select ename,loc
+   from emp,dept
+   where emp.deptno=dept.deptno and loc='NEW YORK';
+
+
+6)WAQTD ename,dname,loc who are working as clerk.
+-->select ename,dname,loc
+   from emp,dept
+   where emp.deptno=dept.deptno and job='CLERK';
+
+
+7)WAQTD ename,sal,deptno of employee and dname for employees
+working in dept 10 or 20.
+-->select ename,sal,emp.deptno,dname
+   from emp,dept
+   where emp.deptno=dept.deptno and emp.deptno in(10,20);
+
+
+
+assignment answers:- 
+
+1)select ename,loc 
+  from emp,dept
+  where emp.deptno=dept.deptno;
+
+2)select dname,sal
+  from emp
+  where emp.deptno=dept.deptno and dname='ACCOUNTING';
+
+3)select dname,sal*12
+  from emp,dept
+  where emp.deptno=dept.deptno and sal>2340.
+
+4)select ename,dname
+  from emp,dept
+  where emp.deptno=dept.deptno and dname like '%A%';
+
+5)select ename,dname
+  from emp,dept
+  where emp.deptno=dept.deptno and job='SALESMAN';
+
+6)select dname,job
+  from emp,dept
+  where emp.deptno=dept.deptno and dname like 'S%' and job like 'S%';
+
+7)select dname,mgr
+  from emp,dept
+  where emp.deptno=dept.deptno and mgr=7839;
+
+8)select dname,hiredate
+  from emp,dept
+  where emp.deptno=dept.deptno and hiredate>'31-DEC-83' and dname in('ACCOUNTING','RESEARCH');
+
+9)select ename,dname
+  from emp,dept
+  where emp.deptno=dept.deptno and comm is not null and emp.deptno in(10,30);
+
+10)select dname,empno
+   from emp,dept
+   where emp.deptno=dept.deptno and empno in(7839,7902) and loc='NEW YORK';
+
+
+outer join:- it used to fetch the unmatching record.
+
+left outer join
+right outer join
+full outer join
+
+1)left outer join :- it gives matching records
+of both table but unmatching records
+of left table.
+
+ANSI:- select */col-name
+       from table-1 left outer join table-2
+       on <join condn>;
+
+oracle:- select */col-name
+         from table1,table2
+         where <join condn>(+);
+
+1)WAQTD names and dnames of all the employees
+even though the employess dont work in any dept.
+-->select ename,dname
+   from emp,dept
+   where emp.deptno=dept.deptno(+);
+
+2)Right Outer Join :- it gives matching records
+of both table but unmatching records
+of right table.
+
+ANSI:- select */col-name
+       from table-1 right outer join table-2
+       on <join condn>;
+
+oracle:- select */col-name
+         from table1,table2
+         where (+)<join condn>;
+
+1)WAQTD names and dnames of all the employees even though there
+are no employees in a dept.
+--> select ename,dname
+    from emp,dept
+    where emp.deptno(+)=dept.deptno;
+
+FULL OUTER JOIN:- gives matching of both table and unmatching 
+of both table.
+
+ansi:- select */col-name
+       from t-1 full outer join t-2
+       on <join condn>;
+
+1)WAQTD names and dnames of all the employees and depts even 
+though employees dont work in any dept and dept having no 
+employees.
+-->select ename,dname
+   from emp full outer join dept
+   on emp.deptno=dept.deptno;
+
+Cross Join:- it is the only join which merge's all the record of
+one table to all the records another table without seeing any common column.
+--> it results in cross product.
+
+syntax:- select */col-n
+         from t-1,t-2,t-3....;
+
+syntax ansi:- select */colname
+              from t1 cross join t2;
+
+Natural join:- 
+1)if we the relation between two tables and use natural join it acts as 
+inner join.
+--> but common attribute(column) get displayed only once .
+--> we fdont write any join condn.
+
+2)if we dont have any relation between tables and use natural join it acts 
+as cross join.
+
+syntax:- select */col-name
+         from t-1 natural join t-2;
+
+
+Self Join:- a table joining with itself is known as self join.
+-->when:- whenever the data to select in the same table but present in different 
+records we use self join.
+
+ANSI syntax:- select */col-name
+              from t-1 join t-2
+              on <join condn>;
+
+Oracle:- select */col-name
+         from t-1,t-2
+         where join condn;
+
+(refer:- select dummytable.col1,dummytable.col2
+         from main-table dummytable1, main-table dummytable2
+         where <join condn>;)
+
+
+1)WAQTD employee name and his manager name.
+--> select e.ename,m.ename
+    from emp e,emp m
+    where e.mgr=m.empno;
+
+2)WAQTD employee name,employee salary,manager name and their manager salary.
+--> select e.ename,e.sal,m.ename,m.sal
+    from emp e,emp m
+    where e.mgr=m.empno;
+
+3)WAQTD employee name and manager name if their manager is working as manager.
+--> select e.ename,m.ename
+    from emp e,emp m
+    where e.mgr=m.empno and m.job='MANAGER';
+
+4)WAQTD employee name,employee job,manager name and manager job if employee is 
+working as clerk.
+--> select e.ename,e.job,m.ename,m.job
+    from emp e,emp m
+    where e.mgr=m.empno and e.job='CLERK';
+
+5)WAQTD employee name, employees deptno,manager name,manager deptno,if their employee
+is working in dept 10 or 20.
+
+
+
+
+self join:- employee --> manager
+
+1)WAQTD employee name and their manager
+name.
+--> select e.ename,m.ename
+    from emp e,emp m
+    where e.mgr=m.empno;
+
+2)WAQTD employee name and his manager name
+and his manager name.
+-->select e1.ename,m.ename,m1.ename
+   emp e,emp m,emp m1
+   where e.mgr=m.empno and m.mgr=m1.empno;
+
+3)WAQTD employee name and their manger's manager name and deptno
+ working in dept 10 or 20.
+-->select e.ename,m1.ename,m1.deptno
+   from emp e,emp m,emp m1
+   where e.mgr=m.empno and m.mgr=m1.empno and m1.deptno in(10,20);
+
+
+4)WAQTD employee name and their manager name and their manager name
+if manager's manager working as analyst.
+-->select e.ename,m.ename,m1.ename
+   from emp e,emp m,emp m1
+   where e.mgr=m.empno and m.mgr=m1.empno and m1.job='ANALYST';
+
+5)WAQTD employee name and their manager name,and also display dept name 
+of employee.
+-->select e.ename,m.ename,d.dname
+   from emp e,emp m,dept d
+   where e.mgr=m.empno and e.deptno=d.deptno;
+
+6)WAQTD employee name and their manager name and their manager name along
+with manager's manager location.
+-->select e.ename,m.ename,m1.ename,d.loc
+   from emp e,emp m,emp m1,dept d
+   where e.mgr=m.empno and m.mgr=m1.empno and m1.deptno=d.deptno;
+
+7)WAQTD employee name,employee loc and their manager name and manager location.
+-->select e.ename,d.loc,m.ename,d1.loc
+   from emp e,emp m,dept d,dept d1
+   where e.mgr=m.empno and e.deptno=d.deptno and m.deptno=d1.deptno;
+
+8)WAQTD employee name,employee loc and their manager name and manager location and their manager
+name and loc.
+--> select e.ename,d.loc,m.ename,d1.loc,m1.ename,d2.loc
+    from emp e,emp m,emp m1,dept d,dept d1,dept d2
+    where e.mgr=m.empno and m.mgr=m1.empno and e.deptno=d.deptno and m.deotno=d1.deptno 
+    and m1.deptno=d2.deptno;
+
+9)WAQTD the employee name and their manager name, if there is no manager
+still the employee name must get displayed.
+--> select e.ename,m.ename
+ from emp e,emp m
+ where e.mgr=m.empno(+);
+
+
+SET OPERATOR'S: used to combine one or more select statements and gives one single result.
+-->number of column and data type must be same to call the set operators.
+--> set operator works for different table also.
+types:-
+
+UNION :- It is used to combine the results of two or more select statements.
+Inside select statement number of column and data-type should be same.
+Repeated data will not come as output.
+Output will be displayed in alphabetical order.
+
+ex:- select ename from emp union select job from emp;
+
+UNION ALL:- It is used to combine the results of two or more select statements.
+Inside select statement number of column and data-type should be same.
+Union all is taking all the duplicate record from both select statement.
+
+ex:- select ename from emp union all select job from emp;
+
+
+INTERSECT:- It is used to combine two select statements but it only returns the records 
+             which are common from both select statements.
+            Inside select statement number of column and data-type should be same.
+
+ex:- select empno from emp intersect select mgr from emp;
+
+
+MINUS:- It is used to combine the results of two select statements and
+          returns in the final result which belongs to only first
+          select statement but not belongs to second select statement.
+          Number of column and data-type should be same.
+
+ex:- select empno from emp minus select mgr from emp;
+
+
+Co-related sub query:- 
+A query written inside another query
+such that the outer query and the inner
+query are dependent on each other
+is known as co-related sub query.
+
+working:- 
+-->outer query executes first but partially.
+-->the partially excuted output is given
+as an input to the inner query.
+-->the inner query executes completely and 
+generates an output.
+-->the output of innerr query is given as 
+input to the outer query.
+-->then outer query get executed and produce the result.
+
+therefore,we can say that outer query and inner query both
+are interdependent.
+
+note:- in corelated subquery join condition is must,and 
+that must be written in subquery.
+--> corelated subquery works with principle of subquery
+and joins.
+
+1)WAQTD the dname where employees are working.
+-->select d.dname  -->(ACCOUNTING,RESEARCH,SALES)
+   from dept d
+   where d.deptno in(select e.deptno from emp e where d.deptno=e.deptno);
+      (10,20,30,40)         (10,10,10,20,20,20,20,20,30,30,30,30,30,30)
+       
+2)WAQTD the dname where employees are not working.
+-->select d.dname
+   from dept d
+   where d.deptno not in(select e.deptno from emp e where d.deptno=e.deptno);
+
+3)WAQTD 4th maximum sal.
+-->select e1.sal from emp e1 where 4=
+                 (select  count(distinct e2.sal) from emp e2 where e1.sal<=e2.sal);
+
+4)WAQTD 10th max sal.
+select e1.sal from emp e1 where 10=(select count(distinct e2.sal) from emp e2
+  where e1.sal<=e2.sal);
+
+
+5)WAQTD 12 min sal.
+select e1.sal from emp e1 where 12=(select count(distinct e2.sal) from emp e2
+  where e1.sal>=e2.sal);
+
+6)WAQTD 6th max sal and 8th min sal.(union)
+select e1.sal from emp e1 where 6=(select count(distinct e2.sal) from emp e2
+where e1.sal<=e2.sal)
+union
+select e1.sal from emp e1 where 8=(select count(distinct e2.sal) from emp e2
+where e1.sal>=e2.sal);
+
+
+
+corelated --> 10th max sal?
+
+select e1.sal from emp e1
+where 10=(select count(distinct e2.sal) from emp e2
+where e1.sal<=e2.sal);
+
+1)WAQTD 10th oldest hiredate.
+-->select e1.hiredate from emp e1
+where 10=(select count(distinct e2.hiredate) from emp e2
+where e1.hiredate>=e2.hiredate);
+
+2)WAQTD 3rd highest commission.
+--> select e1.comm from emp e1
+where 3=(select count(distinct e2.comm) from emp e2
+where e1.comm<=e2.comm);
+
+
+
+Pseudo Columns/Ghost Columns:- 
+-->Pseudo columns are the imaginary columns that are present in all the
+tables in the db.
+-->they are displayed only when the pseudo columns names are specified in the
+select statement.
+-->pseudo columns are preferred when table information is not 
+disclosed.
+
+the pseudo columns are:-
+1)Row number
+2)Row id 
+
+1)ROW number:- it is the unique integer value.
+-->it gives the count of records in the table.
+-->it is generated by the select statement.
+--> it is dynamic(the value keeps on changing).
+ex:- select emp.*,rownum from emp;
+
+
+2)ROW ID :-it is unique hexadecimal address.
+-> it specifies the pysical address of the records
+-->it is genrated by the insert statement.
+-->rowid is static (the value remains same).
+ex:- select emp.*,rowid from emp;
+
+1)WAQTD 3rd record of the table.
+-->select * from emp e1
+   where 3=(select count(e2.rowid) from emp e2 
+   where e1.rowid>=e2.rowid);
+
+2)WAQTD last 3rd record of the table.
+--> select * from emp e1
+    where 3=(select count(e2.rowid) from emp e2
+    where e1.rowid<=e2.rowid);
+
+3)WAQTD 7th record from the table.
+--> select * from emp e1 where 7 =(select count(e2.rowid) from emp e2
+   where e1.rowid>=e2.rowid);
+
+4)WAQTD 2nd,4th and 6th record from the table.
+-->select * from emp e1 where(select count(e2.rowid) from emp e2
+where e1.rowid>=e2.rowid) in(2,4,6);
+
+5)WAQTD first 7 records from the table.
+-->select * from emp e1 
+where(select count(e2.rowid) from emp e2
+where e1.rowid>=e2.rowid)between 1 and 7;
+
+6)WAQTD last 7 records from the table.
+select * from emp e1 
+where(select count(e2.rowid) from emp e2
+where e1.rowid<=e2.rowid)between 1 and 7;
+
+7)WAQTD 1st record of the table.
+select * from emp e1
+where rowid=(select min(e2.rowid) from emp e2);
+
+8)WAQTD last record from the table.
+select * from emp e1
+where rowid=(select max(e2.rowid) from emp e2);
+
+ROWNUM:- 
+
+1)WAQTD the 1st record .
+-->select * from emp
+   where rownum=1;
+
+2)WAQTD first 5 records.
+-->select * from emp
+where rownum<=5;
+
+inline subquery:- the query which is written in from clause is known as inline subquery. 
+ 
+3)WAQTD 2nd record using rownum.
+--> select emp.*,rownum from (select emp.*,rownum from emp where rownum<=2 order by rownum desc)
+where rownum=1;
+
+4)WAQTD 5th record from the table.
+-->select emp.*,rownum from(select emp.*,rownum from emp where rownum<=5 order by rownum desc)
+where rownum=1;
+
+5)WAQTD the 10th record from the table.
+select emp.*,rownum from(select emp.*,rownum from emp where rownum<=10 order by rownum desc)
+where rownum=1;
+
+
+6)WAQTD first half records using rownum.
+--> select * from emp where rownum<=(select count(*)/2 from emp);
+
+7)WAQTD middle 5 records using rownum and(set operator minus).
+-->SELECT * FROM emp WHERE rownum<=9
+    MINUS
+   SELECT * FROM emp WHERE rownum<5;
+
+
+
+using rownum display 1st 3 highest salary.
+--> select emp.* from(select emp.*,rownum from emp order by sal desc)
+   where rownum<=3;
+
+using rownum display 1st 3 lowest salary.
+--> select distinct(sal) from(select distinct(sal) from emp order by sal)
+    where rownum<=3;
+
+rules of E.F.codd:- 
+1)the data entered into a cell always be a single valued data.
+2)According to E.F CODD we can store the data in multiple tables,if needed we can
+establish a connection between the tables with the help of key attribute.
+3)in rdbms, we store everything in the form of tables including metadata.
+
+metadata:- 
+ the details about a data is known as metadata
+
+empno  ename  photo
+1       A     img1
+2       B     img2
+
+metatable 
+imagename  size   format
+img1        123    jpeg 
+
+4)the data entered into the table can be validated in 2 steps:- 
+1)by assigning datatypes
+2)by assigning constraints
+
+datatypes are mandatory,whereas constraints are optional.
+
+types of dbms:- 
+1)HDBMS(hirarchical database management system)
+2)ODBMS(object database management system)
+3)NDBMS(network database management system)
+4)RDBMS(relational database management system)
+
+
+1)HDBMS:- it stores the data in the form of tree structure.
+-->dis:- complex ,data redundancy,it is difficult to implement
+--> if you make changes in the database structure you need to change the entire
+application.
+
+2)NDBMS:- it stores the data in the form of network.
+--> complex so there may be performance problem, it is not user friendly (structure)
+
+3)ODBMS:- it stores the data in the form of object.
+-->complex so there may be performance problem.
+
+
+Normalization:- decomposing the large table into small tables is known as normalization.
+(or) to organize the data in a good form we use normalization.
+normal form:- the table which is not having data redundancy and anomalies is said to be in
+normal form.
+
+anomalies(problems arise from relations that generated from user views are called anomalies)
+
+1NF :- first Normal Form
+ --> the table should not have multiple values in a single cell.
+--> and remove duplicate data.
+
+2NF:- it must be in 1NF .
+--> it should not have partial functional dependency.
+
+-->the non-key-attribute must not be dependent partially on key attribute that leads to 
+the partial functional dependency.
+note:- everytime in the table you cannot find the primary key ,where you should create one 
+primary key for the table sometimes by merging of two columns.
+
+3NF:- it must be in 2NF
+--> it should not have transitive functional dependency.
+
+ex:- empno,ename,sal,pincode,city,state
+
+key attribute:- (primary key) --> empno is primary key
+other than primary key all are non-key attribute.
+
+empno --> ename (ename is dependent on empno)
+empno (determines)-->sal (sal is dependent on empno)
+empno-->pincode(pincode is dependent on empno)
+empno-->city (city is dependent on empno)
+empno--> state(state is dependent on empno)
+
+
+pincode-->city (city is dependent on pincode)
+pincode-->state(state is dependent on pincode)
+
+so here non-ket attribute is determining non-key-attribute, this leads to transitive functional
+dependency.
+
+table 1:- 
+empno,ename,sal,pincode         
+
+table 2:-
+ pincode ,state,city
+
+THEREFORE, the table is normalized when it is in 3nf.
+
+BCNF:- boyce codd normal form :- it is an advanced version of 3nf.
+
+interview:- 
+normalization
+pseudo columns
+joins
+set operator(optional)
+subquery
+group by and having 
+commands(dql,ddl,dml,dcl,tcl)
+difference between (where clause and having clause/inner join and natural join,drop and truncate and delete,char and varchar)
+function( srf,mrf --> nvl)
+
+extra:- if u r searching for data analyst 
+(triggers,views,cursor,index,store procedure)
+
+
+
+
+
+
+
+
+
+
+
+                                                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
